@@ -1,0 +1,4 @@
+#Wed Feb 03 21:11:12 IST 2021
+base.0=/Users/sushovan/AndroidStudioProjects/hisaber_khata/build/app/intermediates/dex/debug/mergeDexDebug/out/classes.dex
+renamed.0=classes.dex
+path.0=classes.dex
