@@ -18,10 +18,7 @@ class HisaaberKhata extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       // theme: appTheme,
-      home: Scaffold(
-        appBar: Appbar(),
-      )
-      // initialRoute: StatementPage.id,
+      initialRoute: StatementPage.id,
       routes: routes,
     );
   }
