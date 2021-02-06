@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:hisaber_khata/utilities/datetime_now.dart';
+import 'package:hisaber_khata/utilities/common_utility.dart';
 
 class AppBrain extends ChangeNotifier {
-  String date = dateTimeNow();
+  String date = CommonUtility().dateTimeNow();
   String description;
   String amount;
   int netBalance = 0;
@@ -22,7 +22,7 @@ class AppBrain extends ChangeNotifier {
   }
 
   clearCreditDebitField() {
-    date = dateTimeNow();
+    date = CommonUtility().dateTimeNow();
     amount = null;
     description = null;
   }

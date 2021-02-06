@@ -1,10 +1,11 @@
 import 'dart:async';
+
 import 'package:flutter/widgets.dart';
-import 'package:hisaber_khata/storage/data_table_entry.dart';
+import 'package:hisaber_khata/utilities/storage_utility.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
-class DataBaseOperations {
+class LocalStorage {
   Future<Database> dataBase() async {
     WidgetsFlutterBinding.ensureInitialized();
     return openDatabase(
@@ -20,7 +21,7 @@ class DataBaseOperations {
     );
   }
 
-  Future<void> insertData(DataTableEntry data) async {
+  Future<void> insertData(StorageUtility data) async {
     final Database db = await dataBase();
     await db.insert(
       'data',
@@ -29,7 +30,7 @@ class DataBaseOperations {
     );
   }
 
-  Future<List<DataTableEntry>> dataList() async {
+  Future<List<StorageUtility>> dataList() async {
     // Get a reference to the database.
     final Database db = await dataBase();
 
@@ -38,7 +39,7 @@ class DataBaseOperations {
 
     // Convert the List<Map<String, dynamic> into a List<Dog>.
     return List.generate(maps.length, (i) {
-      return DataTableEntry(
+      return StorageUtility(
         id: maps[i]['id'],
         date: maps[i]['date'],
         description: maps[i]['description'],
@@ -47,7 +48,7 @@ class DataBaseOperations {
     });
   }
 
-  Future<void> updateData(DataTableEntry data) async {
+  Future<void> updateData(StorageUtility data) async {
     final db = await dataBase();
     await db.update(
       'data',

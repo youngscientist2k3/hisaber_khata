@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:hisaber_khata/constants/data_table_header_constants.dart'
+import 'package:hisaber_khata/constants/transaction_table_header_constants.dart'
     as DataTableHeaderConstants;
 
-class DataTableHeaderComponent extends StatelessWidget {
+class TransactionTableHeaderComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(

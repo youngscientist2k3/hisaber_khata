@@ -1,11 +1,11 @@
-class DataTableEntry {
+class StorageUtility {
   int id;
   final String date;
   final String description;
   final String amount;
   final String selection;
 
-  DataTableEntry(
+  StorageUtility(
       {this.id, this.date, this.description, this.amount, this.selection});
 
   Map<String, dynamic> toMap() {

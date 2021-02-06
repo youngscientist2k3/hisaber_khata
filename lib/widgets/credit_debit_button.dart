@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hisaber_khata/brain/app_brain.dart';
-import 'package:hisaber_khata/models/utility_models.dart';
+import 'package:hisaber_khata/utilities/common_utility.dart';
 import 'package:provider/provider.dart';
 
 class CreditDebitButton extends StatelessWidget {
@@ -15,7 +15,7 @@ class CreditDebitButton extends StatelessWidget {
       onPressed: () {
         Provider.of<AppBrain>(context, listen: false).clearCreditDebitField();
         Provider.of<AppBrain>(context, listen: false).selection = selection;
-        CommonUtility().showCreditDebitSheet(context, color);
+        CommonUtility().showCreditDebitEntryContainer(context, color);
       },
       child: Text(selection),
     );
