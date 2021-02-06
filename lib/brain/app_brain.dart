@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hisaber_khata/constants/constants_common.dart' as constCommon;
-import 'package:hisaber_khata/storage/data_table_database_operations.dart';
-import 'package:hisaber_khata/storage/data_table_entry.dart';
 import 'package:hisaber_khata/utilities/datetime_now.dart';
 
 class AppBrain extends ChangeNotifier {
@@ -24,13 +21,13 @@ class AppBrain extends ChangeNotifier {
     notifyListeners();
   }
 
-  restartParameters() {
+  clearCreditDebitField() {
     date = dateTimeNow();
     amount = null;
     description = null;
   }
 
-  fetchNetBalance() {
+  fetchNetBalanceAmount() {
     if (selection == 'CREDIT') {
       netBalance += int.parse(amount ?? 0);
     } else if (selection == 'DEBIT') {

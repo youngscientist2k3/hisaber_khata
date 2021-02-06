@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:hisaber_khata/models/UtilityModel.dart';
-import 'package:hisaber_khata/components/credit_debit_button_component.dart';
+import 'package:hisaber_khata/components/credit_debit_buttondart';
 import 'package:hisaber_khata/components/data_table_detail_component.dart';
-import 'package:hisaber_khata/components/net_balance_component.dart';
 import 'package:hisaber_khata/components/data_table_header_component.dart';
+import 'package:hisaber_khata/components/net_balance_component.dart';
+import 'package:hisaber_khata/models/utility_models.dart';
 
 class StatementScreen extends StatelessWidget {
   static const id = '/StatementScreen';
@@ -11,8 +11,7 @@ class StatementScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:
-      UtilityModel().buildStatementAppBar(context),
+      appBar: CommonUtility().buildStatementAppBar(context),
       body: Container(
         child: Column(
           children: <Widget>[
@@ -27,15 +26,14 @@ class StatementScreen extends StatelessWidget {
             SizedBox(
               height: 20.0,
             ),
-            Expanded(
-              child: DataTableDetailComponent(),
+            DataTableDetailComponent(),
+            SizedBox(
+              height: 10.0,
             ),
-            CreditDebitButtonComponent(),
+            CreditDebitComponent(),
           ],
         ),
       ),
     );
   }
 }
-
-

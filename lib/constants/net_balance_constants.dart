@@ -9,3 +9,7 @@ const shape = RoundedRectangleBorder(
   borderRadius: BorderRadius.all(Radius.circular(20.0)),
   side: BorderSide(width: 1.0),
 );
+
+const shadowColor= Color(0x80808080);
+
+const containerColor= Color(0xFFFFFFFF);

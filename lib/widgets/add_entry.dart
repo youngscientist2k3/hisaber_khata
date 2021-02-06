@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:date_time_picker/date_time_picker.dart';
 import 'package:hisaber_khata/brain/app_brain.dart';
 import 'package:provider/provider.dart';
-import 'package:hisaber_khata/constants/constants_common.dart' as constCommon;
+import 'package:hisaber_khata/constants/common_constants.dart' as constCommon;
 
 class AddEntry extends StatelessWidget {
   final Color color;

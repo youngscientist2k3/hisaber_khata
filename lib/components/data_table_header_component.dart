@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hisaber_khata/constants/const_data_table_header.dart'
-    as constDataTableHeader;
+import 'package:hisaber_khata/constants/data_table_header_constants.dart'
+    as DataTableHeaderConstants;
 
 class DataTableHeaderComponent extends StatelessWidget {
   @override
@@ -12,17 +12,17 @@ class DataTableHeaderComponent extends StatelessWidget {
         children: <Widget>[
           Text(
             'DATE',
-            style: constDataTableHeader.textStyle,
+            style: DataTableHeaderConstants.textStyle,
             textAlign: TextAlign.center,
           ),
           Text(
             'DESCRIPTION',
-            style: constDataTableHeader.textStyle,
+            style: DataTableHeaderConstants.textStyle,
             textAlign: TextAlign.center,
           ),
           Text(
             'AMOUNT',
-            style: constDataTableHeader.textStyle,
+            style: DataTableHeaderConstants.textStyle,
             textAlign: TextAlign.center,
           ),
         ],

@@ -1,4 +1,4 @@
-import 'package:hisaber_khata/constants/constants_common.dart' as constCommon;
+import 'package:hisaber_khata/constants/common_constants.dart' as constCommon;
 
 String dateTimeNow() =>
     '${DateTime.now().day} ${constCommon.months[DateTime.now().month.toString()]} ${DateTime.now().year}';
