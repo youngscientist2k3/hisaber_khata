@@ -15,7 +15,8 @@ class CreditDebitButton extends StatelessWidget {
       onPressed: () {
         Provider.of<AppBrain>(context, listen: false).clearCreditDebitField();
         Provider.of<AppBrain>(context, listen: false).selection = selection;
-        CommonUtility().showCreditDebitEntryContainer(context, color);
+        CommonUtility()
+            .showCreditDebitEntryContainer(context, color, selection);
       },
       child: Text(selection),
     );

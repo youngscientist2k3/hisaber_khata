@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:hisaber_khata/components/credit_debit_buttondart';
+import 'package:hisaber_khata/components/credit_debit_button_component.dart';
 import 'package:hisaber_khata/components/net_balance_component.dart';
-import 'package:hisaber_khata/components/transaction_table_detail_component.dart';
-import 'package:hisaber_khata/components/transaction_table_header_component.dart';
+import 'package:hisaber_khata/components/transaction_table_component.dart';
 import 'package:hisaber_khata/utilities/common_utility.dart';
 
 class StatementScreen extends StatelessWidget {
@@ -22,11 +21,13 @@ class StatementScreen extends StatelessWidget {
             SizedBox(
               height: 20.0,
             ),
-            TransactionTableHeaderComponent(),
+            TransactionTableComponent().fetchHeader(context),
             SizedBox(
               height: 20.0,
             ),
-            TransactionTableDetailComponent(),
+            Expanded(
+              child: TransactionTableComponent().fetchDetail(context),
+            ),
             SizedBox(
               height: 10.0,
             ),

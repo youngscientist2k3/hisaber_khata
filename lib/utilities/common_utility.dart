@@ -7,27 +7,25 @@ import 'package:provider/provider.dart';
 
 class CommonUtility {
   AppBar buildStatementAppBar(BuildContext context) {
-    return AppBar(
-        centerTitle: true,
-        title: Text('My Hisaaber Khata'),
-        actions: [
-          RawMaterialButton(
-            child: Icon(Icons.clear_sharp),
-            onPressed: () {
-              Provider.of<AppBrain>(context, listen: false).clear();
-            },
-          ),
-        ]);
+    return AppBar(centerTitle: true, title: Text('Calculax'), actions: [
+      RawMaterialButton(
+        child: Icon(Icons.clear_sharp),
+        onPressed: () {
+          Provider.of<AppBrain>(context, listen: false).clearNetBalanceAmount();
+        },
+      ),
+    ]);
   }
 
-  showCreditDebitEntryContainer(BuildContext context, Color color) {
+  showCreditDebitEntryContainer(
+      BuildContext context, Color color, String selection) {
     return showModalBottomSheet(
         isScrollControlled: true,
         context: context,
         builder: (context) => SingleChildScrollView(
               padding: EdgeInsets.only(
                   bottom: MediaQuery.of(context).viewInsets.bottom),
-              child: CreditDebitEntryContainer(color),
+              child: CreditDebitEntryContainer(color, selection),
             ));
   }
 

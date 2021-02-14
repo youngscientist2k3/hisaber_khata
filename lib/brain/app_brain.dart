@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:hisaber_khata/storage/local_storage.dart';
 import 'package:hisaber_khata/utilities/common_utility.dart';
+import 'package:hisaber_khata/utilities/storage_utility.dart';
 
 class AppBrain extends ChangeNotifier {
   String date = CommonUtility().dateTimeNow();
@@ -7,17 +9,19 @@ class AppBrain extends ChangeNotifier {
   String amount;
   int netBalance = 0;
   String selection;
+  List dataList;
 
-  List<String> dateCells = [];
-  List<String> descriptionCells = [];
-  List<String> amountCells = [];
-  List<String> selectionCells = [];
+  Future<int> get id async {
+    return (await LocalStorage.queryRowCount() ?? 0 + 1);
+  }
 
-  addRow() {
-    dateCells.insert(0, date);
-    descriptionCells.insert(0, description);
-    amountCells.insert(0, amount);
-    selectionCells.insert(0, selection);
+  Future<void> addTransactionTableRow(StorageUtility data) async {
+    LocalStorage.insertData(data);
+    notifyListeners();
+  }
+
+  Future fetchDataBase() async {
+    dataList = await LocalStorage.queryAllRows();
     notifyListeners();
   }
 
@@ -28,21 +32,10 @@ class AppBrain extends ChangeNotifier {
   }
 
   fetchNetBalanceAmount() {
-    if (selection == 'CREDIT') {
-      netBalance += int.parse(amount ?? 0);
-    } else if (selection == 'DEBIT') {
-      netBalance -= int.parse(amount ?? 0);
-    }
-    if (dateCells.length == 0) {
-      netBalance = 0;
-    }
     return netBalance;
   }
 
-  clear() {
-    dateCells = [];
-    descriptionCells = [];
-    amountCells = [];
+  clearNetBalanceAmount() {
     netBalance = 0;
     notifyListeners();
   }

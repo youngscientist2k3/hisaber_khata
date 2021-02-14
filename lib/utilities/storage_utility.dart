@@ -14,11 +14,12 @@ class StorageUtility {
       'date': date,
       'description': description,
       'amount': amount,
+      'selection': selection,
     };
   }
 
   @override
   String toString() {
-    return 'Data{id: $id date: $date, description: $description, amount: $amount}';
+    return 'Data{id: $id date: $date, description: $description, amount: $amount, selection:$selection}';
   }
 }

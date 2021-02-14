@@ -1,76 +1,81 @@
 import 'dart:async';
 
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 import 'package:hisaber_khata/utilities/storage_utility.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
 class LocalStorage {
-  Future<Database> dataBase() async {
+  static final _databaseName = "MyDatabase.db";
+  static final _databaseVersion = 1;
+  static final table = 'my_table';
+  static final columnId = 'id';
+  static final columnName = 'name';
+  static final columnDescription = 'description';
+  static final columnAmount = 'amount';
+  static final columnSelection = 'selection';
+  static final columnDate = 'date';
+  static Database _database;
+
+  LocalStorage._privateConstructor();
+  static final LocalStorage instance = LocalStorage._privateConstructor();
+
+  Future<Database> get database async {
+    if (_database != null) return _database;
+    _database = await _initializeDatabase();
+    return _database;
+  }
+  static Future<Database> _initializeDatabase() async {
     WidgetsFlutterBinding.ensureInitialized();
-    return openDatabase(
-      join(await getDatabasesPath(), 'data_table_database.db'),
-      onCreate: createDataBase,
-      version: 1,
-    );
+    String path = join(await getDatabasesPath(), _databaseName);
+    return await openDatabase(path,
+        version: _databaseVersion, onCreate: _onCreate);
   }
 
-  Future<Database> createDataBase(db, version) {
-    return db.execute(
-      "CREATE TABLE dataTable(id INTEGER PRIMARY KEY, date TEXT, description TEXT, amount TEXT,selection TEXT)",
+  // SQL code to create the database table
+  static Future _onCreate(Database db, int version) async {
+    print('Database Table execution started Sushovan');
+    await db.execute(
+      "CREATE TABLE $table( $columnId TEXT PRIMARY KEY, $columnDate TEXT, $columnDescription TEXT, $columnAmount TEXT, $columnSelection TEXT)",
     );
+    print('Database Table has been successfully Executed Sushovan');
+  }
+  //may be the table is not getting created
+
+  static Future insertData(StorageUtility data) async {
+    Database db = await instance.database;
+    if (db != null) {
+      return await db.insert(table, data.toMap());
+    } else {
+      print('database not available');
+    }
   }
 
-  Future<void> insertData(StorageUtility data) async {
-    final Database db = await dataBase();
-    await db.insert(
-      'data',
-      data.toMap(),
-      conflictAlgorithm: ConflictAlgorithm.replace,
-    );
+  static Future<List<Map<String, dynamic>>> queryAllRows() async {
+    Database db = await instance.database;
+    return await db.query(table);
   }
 
-  Future<List<StorageUtility>> dataList() async {
-    // Get a reference to the database.
-    final Database db = await dataBase();
-
-    // Query the table for all The Dogs.
-    final List<Map<String, dynamic>> maps = await db.query('data');
-
-    // Convert the List<Map<String, dynamic> into a List<Dog>.
-    return List.generate(maps.length, (i) {
-      return StorageUtility(
-        id: maps[i]['id'],
-        date: maps[i]['date'],
-        description: maps[i]['description'],
-        amount: maps[i]['amount'],
-      );
-    });
+  // All of the methods (insert, query, update, delete) can also be done using
+  // raw SQL commands. This method uses a raw query to give the row count.
+  static Future<int> queryRowCount() async {
+    Database db = await instance.database;
+    return Sqflite.firstIntValue(
+        await db.rawQuery('SELECT COUNT(*) FROM $table'));
   }
 
-  Future<void> updateData(StorageUtility data) async {
-    final db = await dataBase();
-    await db.update(
-      'data',
-      data.toMap(),
-      // Ensure that the Dog has a matching id.
-      where: "id = ?",
-      // Pass the Dog's id as a whereArg to prevent SQL injection.
-      whereArgs: [data.id],
-    );
+  // We are assuming here that the id column in the map is set. The other
+  // column values will be used to update the row.
+  static Future<int> update(Map<String, dynamic> row) async {
+    Database db = await instance.database;
+    int id = row[columnId];
+    return await db.update(table, row, where: '$columnId = ?', whereArgs: [id]);
   }
 
-  Future<void> deleteData(int id) async {
-    // Get a reference to the database.
-    final db = await dataBase();
-
-    // Remove the Dog from the database.
-    await db.delete(
-      'data',
-      // Use a `where` clause to delete a specific dog.
-      where: "id = ?",
-      // Pass the Dog's id as a whereArg to prevent SQL injection.
-      whereArgs: [id],
-    );
+  // Deletes the row specified by the id. The number of affected rows is
+  // returned. This should be 1 as long as the row exists.
+  static Future<int> delete(int id) async {
+    Database db = await instance.database;
+    return await db.delete(table, where: '$columnId = ?', whereArgs: [id]);
   }
 }

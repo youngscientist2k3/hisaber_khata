@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hisaber_khata/brain/app_brain.dart';
-import 'package:provider/provider.dart';
 import 'package:hisaber_khata/constants/net_balance_constants.dart'
     as NetBalanceConstants;
 
@@ -26,9 +24,10 @@ class NetBalanceComponent extends StatelessWidget {
               width: 15.0,
             ),
             Text(
-              Provider.of<AppBrain>(context, listen: true)
-                  .fetchNetBalanceAmount()
-                  .toString(),
+              '0',
+              // Provider.of<AppBrain>(context, listen: true)
+              //     .fetchNetBalanceAmount()
+              //     .toString(),
               style: NetBalanceConstants.textStyle,
             )
           ],

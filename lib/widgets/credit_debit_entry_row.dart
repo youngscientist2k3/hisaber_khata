@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:hisaber_khata/brain/app_brain.dart';
 import 'package:hisaber_khata/constants/credit_debit_constants.dart'
     as CreditDebitConstants;
 
 class CreditDebitEntryRow extends StatelessWidget {
   final String text;
   final Color color;
-  final AppBrain appBrain;
+  final Function appBrainProperty;
 
-  CreditDebitEntryRow({this.color, this.text, this.appBrain});
+  CreditDebitEntryRow({this.color, this.text, this.appBrainProperty});
 
   @override
   Widget build(BuildContext context) {
@@ -27,9 +26,7 @@ class CreditDebitEntryRow extends StatelessWidget {
             textCapitalization: TextCapitalization.characters,
             decoration: CreditDebitConstants.entryTextDecoration,
             autofocus: true,
-            onChanged: (value) {
-              appBrain.description = value;
-            },
+            onChanged: appBrainProperty,
           ),
         ),
       ],
