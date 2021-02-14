@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hisaber_khata/brain/app_brain.dart';
 import 'package:hisaber_khata/constants/transaction_table_constants.dart'
     as DataTableHeaderConstants;
+import 'package:hisaber_khata/widgets/transaction_table_detail_row.dart';
 import 'package:provider/provider.dart';
 
 class TransactionTableComponent {
@@ -41,13 +42,8 @@ class TransactionTableComponent {
       return Container(
         child: ListView.builder(
           itemBuilder: (context, index) {
-            return Row(
-              children: [
-                Text(dataObjectList[index]['date']),
-                Text(dataObjectList[index]['description']),
-                Text(dataObjectList[index]['amount'])
-              ],
-            );
+            return TransactionTableDetailRow(
+                dataObjectList: dataObjectList, index: index);
           },
           itemCount: dataObjectList.length,
         ),
