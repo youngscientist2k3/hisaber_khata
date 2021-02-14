@@ -25,6 +25,7 @@ class LocalStorage {
     _database = await _initializeDatabase();
     return _database;
   }
+
   static Future<Database> _initializeDatabase() async {
     WidgetsFlutterBinding.ensureInitialized();
     String path = join(await getDatabasesPath(), _databaseName);
@@ -40,7 +41,7 @@ class LocalStorage {
     );
     print('Database Table has been successfully Executed Sushovan');
   }
-  //may be the table is not getting created
+  //TODO: may be the table is not getting created
 
   static Future insertData(StorageUtility data) async {
     Database db = await instance.database;
