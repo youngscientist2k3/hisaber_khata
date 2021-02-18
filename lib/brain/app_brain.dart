@@ -6,10 +6,11 @@ import 'package:hisaber_khata/utilities/storage_utility.dart';
 class AppBrain extends ChangeNotifier {
   String date = CommonUtility().dateTimeNow();
   String description;
-  String amount;
-  int netBalance = 0;
+  double amount;
+  double netBalance = 0.00;
   String selection;
-  List dataList;
+  List<Map<String, dynamic>> dataList = [];
+  String netAmount;
 
   Future<int> get id async {
     return (await LocalStorage.queryRowCount() ?? 0 + 1);
@@ -17,26 +18,43 @@ class AppBrain extends ChangeNotifier {
 
   Future<void> addTransactionTableRow(StorageUtility data) async {
     LocalStorage.insertData(data);
-    notifyListeners();
-  }
-
-  Future fetchDataBase() async {
     dataList = await LocalStorage.queryAllRows();
     notifyListeners();
   }
 
+  // Future fetchDataBase() async {
+  //   dataList = await LocalStorage.queryAllRows();
+  //   notifyListeners();
+  // }
+
   clearCreditDebitField() {
+    //in common utility
     date = CommonUtility().dateTimeNow();
     amount = null;
     description = null;
   }
 
   fetchNetBalanceAmount() {
-    return netBalance;
+    // in netbalance component
+    netBalance = 0.00;
+    if (dataList != []) {
+      for (int i = 0; i < dataList.length; i++) {
+        if (dataList[i]['selection'] == 'CREDIT') {
+          netBalance += double.parse(dataList[i]['amount']);
+        } else if (dataList[i]['selection'] == 'DEBIT') {
+          netBalance -= double.parse(dataList[i]['amount']);
+        }
+      }
+      return '$netBalance';
+    } else {
+      return '';
+    }
   }
 
   clearNetBalanceAmount() {
     netBalance = 0;
+    LocalStorage.deleteAllRows();
+    dataList = [];
     notifyListeners();
   }
 }

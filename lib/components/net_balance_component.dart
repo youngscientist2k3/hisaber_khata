@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:hisaber_khata/brain/app_brain.dart';
 import 'package:hisaber_khata/constants/net_balance_constants.dart'
     as NetBalanceConstants;
+import 'package:provider/provider.dart';
 
+// ignore: must_be_immutable
 class NetBalanceComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -24,12 +27,10 @@ class NetBalanceComponent extends StatelessWidget {
               width: 15.0,
             ),
             Text(
-              '0',
-              // Provider.of<AppBrain>(context, listen: true)
-              //     .fetchNetBalanceAmount()
-              //     .toString(),
-              style: NetBalanceConstants.textStyle,
-            )
+              Provider.of<AppBrain>(
+                context,
+              ).fetchNetBalanceAmount(),
+            ),
           ],
         ),
       ),

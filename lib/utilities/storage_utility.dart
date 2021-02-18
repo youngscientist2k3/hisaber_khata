@@ -2,7 +2,7 @@ class StorageUtility {
   int id;
   final String date;
   final String description;
-  final String amount;
+  final double amount;
   final String selection;
 
   StorageUtility(

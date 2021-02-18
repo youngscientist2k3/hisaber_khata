@@ -54,7 +54,7 @@ class CreditDebitEntryContainer extends StatelessWidget {
                   color: color,
                   text: 'AMOUNT',
                   appBrainProperty: (value) {
-                    appBrain.amount = value;
+                    appBrain.amount = double.parse(value);
                   }),
               SizedBox(height: 20.0),
               RaisedButton(

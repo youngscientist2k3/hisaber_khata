@@ -37,7 +37,7 @@ class LocalStorage {
   static Future _onCreate(Database db, int version) async {
     print('Database Table execution started Sushovan');
     await db.execute(
-      "CREATE TABLE $table( $columnId TEXT PRIMARY KEY, $columnDate TEXT, $columnDescription TEXT, $columnAmount TEXT, $columnSelection TEXT)",
+      "CREATE TABLE $table( $columnId TEXT PRIMARY KEY, $columnDate TEXT, $columnDescription TEXT, $columnAmount DOUBLE, $columnSelection TEXT)",
     );
     print('Database Table has been successfully Executed Sushovan');
   }
@@ -78,5 +78,10 @@ class LocalStorage {
   static Future<int> delete(int id) async {
     Database db = await instance.database;
     return await db.delete(table, where: '$columnId = ?', whereArgs: [id]);
+  }
+
+  static Future<int> deleteAllRows() async {
+    Database db = await instance.database;
+    return await db.delete(table);
   }
 }

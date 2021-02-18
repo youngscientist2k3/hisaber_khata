@@ -36,11 +36,12 @@ class TransactionTableComponent {
   }
 
   fetchDetail(BuildContext context) {
-    Provider.of<AppBrain>(context, listen: false).fetchDataBase();
+    // Provider.of<AppBrain>(context, listen: false).fetchDataBase();
     dataObjectList = Provider.of<AppBrain>(context).dataList;
     if (dataObjectList != null) {
       return Container(
         child: ListView.builder(
+          reverse: true,
           itemBuilder: (context, index) {
             return TransactionTableDetailRow(
                 dataObjectList: dataObjectList, index: index);
