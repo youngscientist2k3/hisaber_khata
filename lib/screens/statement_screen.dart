@@ -21,12 +21,12 @@ class StatementScreen extends StatelessWidget {
             SizedBox(
               height: 20.0,
             ),
-            TransactionTableComponent().fetchHeader(context),
+            TransactionTableHeaderComponent(),
             SizedBox(
               height: 20.0,
             ),
             Expanded(
-              child: TransactionTableComponent().fetchDetail(context),
+              child: TransactionTableDetailComponent(),
             ),
             SizedBox(
               height: 10.0,

@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:hisaber_khata/brain/app_brain.dart';
 import 'package:hisaber_khata/constants/common_constants.dart'
     as CommonConstants;
 import 'package:hisaber_khata/widgets/credit_debit_entry_container.dart';
-import 'package:provider/provider.dart';
+import 'package:hisaber_khata/widgets/statement_appbar_alertdialog.dart';
 
 class CommonUtility {
   AppBar buildStatementAppBar(BuildContext context) {
@@ -11,7 +10,8 @@ class CommonUtility {
       RawMaterialButton(
         child: Icon(Icons.clear_sharp),
         onPressed: () {
-          Provider.of<AppBrain>(context, listen: false).clearNetBalanceAmount();
+          statementAppBarAlertDialog(context);
+          // Provider.of<AppBrain>(context, listen: false).clearNetBalanceAmount();
         },
       ),
     ]);

@@ -22,10 +22,10 @@ class AppBrain extends ChangeNotifier {
     notifyListeners();
   }
 
-  // Future fetchDataBase() async {
-  //   dataList = await LocalStorage.queryAllRows();
-  //   notifyListeners();
-  // }
+  Future fetchDataBase() async {
+    dataList = await LocalStorage.queryAllRows();
+    notifyListeners();
+  }
 
   clearCreditDebitField() {
     //in common utility
