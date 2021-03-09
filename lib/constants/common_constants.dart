@@ -26,3 +26,5 @@ const Map<String, String> months = {
   '11': 'Nov',
   '12': 'Dec'
 };
+
+const tinkerTable = 'my_table';

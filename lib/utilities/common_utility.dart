@@ -1,20 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:hisaber_khata/constants/common_constants.dart'
     as CommonConstants;
+import 'package:hisaber_khata/screens/login_screen.dart';
 import 'package:hisaber_khata/widgets/credit_debit_entry_container.dart';
 import 'package:hisaber_khata/widgets/statement_appbar_alertdialog.dart';
 
 class CommonUtility {
   AppBar buildStatementAppBar(BuildContext context) {
-    return AppBar(centerTitle: true, title: Text('Calculax'), actions: [
-      RawMaterialButton(
-        child: Icon(Icons.clear_sharp),
+    return AppBar(
+      centerTitle: true,
+      title: Text('Calculax'),
+      actions: [
+        RawMaterialButton(
+          child: Icon(Icons.clear_sharp),
+          onPressed: () {
+            statementAppBarAlertDialog(context);
+            // Provider.of<AppBrain>(context, listen: false).clearNetBalanceAmount();
+          },
+        ),
+      ],
+      leading: IconButton(
+        icon: Icon(Icons.arrow_back),
         onPressed: () {
-          statementAppBarAlertDialog(context);
-          // Provider.of<AppBrain>(context, listen: false).clearNetBalanceAmount();
+          Navigator.pushNamed(context, LoginScreen.id);
         },
       ),
-    ]);
+    );
   }
 
   showCreditDebitEntryContainer(

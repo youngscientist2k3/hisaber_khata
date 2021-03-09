@@ -10,6 +10,7 @@ statementAppBarAlertDialog(BuildContext context) {
       Navigator.pop(context);
     },
   );
+
   Widget continueButton = FlatButton(
     child: Text("Continue"),
     onPressed: () {

@@ -1,14 +1,15 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:hisaber_khata/utilities/database_utility.dart';
 import 'package:hisaber_khata/utilities/storage_utility.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
 class LocalStorage {
-  static final _databaseName = "MyDatabase.db";
+  static final _databaseName = DatabaseUtility.databaseName;
   static final _databaseVersion = 1;
-  static final table = 'my_table';
+  static String table = 'my_table';
   static final columnId = 'id';
   static final columnName = 'name';
   static final columnDescription = 'description';
@@ -16,21 +17,42 @@ class LocalStorage {
   static final columnSelection = 'selection';
   static final columnDate = 'date';
   static Database _database;
-
   LocalStorage._privateConstructor();
   static final LocalStorage instance = LocalStorage._privateConstructor();
 
   Future<Database> get database async {
     if (_database != null) return _database;
-    _database = await _initializeDatabase();
+    _database = await initializeDatabase(_databaseName);
     return _database;
   }
 
-  static Future<Database> _initializeDatabase() async {
+  static get database1 async {
+    if (_database != null) {
+      return _database;
+    } else {
+      return null;
+    }
+  }
+
+  static Future<Database> initializeDatabase(String databaseName) async {
     WidgetsFlutterBinding.ensureInitialized();
-    String path = join(await getDatabasesPath(), _databaseName);
+    String path = join(await getDatabasesPath(), databaseName);
     return await openDatabase(path,
         version: _databaseVersion, onCreate: _onCreate);
+  }
+
+  static Future operateExistingDatabase(String databaseName1) async {
+    WidgetsFlutterBinding.ensureInitialized();
+    String path1 = join(await getDatabasesPath(), databaseName1);
+    var database2 = await openDatabase(path1, version: _databaseVersion);
+    return database2;
+  }
+
+  static Future<bool> checkDatabaseExists(String databaseName1) async {
+    String path1 = join(await getDatabasesPath(), databaseName1);
+    bool dab = await databaseFactory.databaseExists(path1);
+    print(dab);
+    return dab;
   }
 
   // SQL code to create the database table

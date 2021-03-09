@@ -40,9 +40,13 @@ class AppBrain extends ChangeNotifier {
     if (dataList != []) {
       for (int i = 0; i < dataList.length; i++) {
         if (dataList[i]['selection'] == 'CREDIT') {
-          netBalance += double.parse(dataList[i]['amount']);
+          netBalance += double.parse(
+            dataList[i]['amount'].toString(),
+          );
         } else if (dataList[i]['selection'] == 'DEBIT') {
-          netBalance -= double.parse(dataList[i]['amount']);
+          netBalance -= double.parse(
+            dataList[i]['amount'].toString(),
+          );
         }
       }
       return '$netBalance';

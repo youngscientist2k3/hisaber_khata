@@ -10,7 +10,7 @@ class TransactionTableDetailRow extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 20.0),
-      height: 50.0,
+      height: 60.0,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
@@ -23,7 +23,7 @@ class TransactionTableDetailRow extends StatelessWidget {
             style: fetchTextStyle,
           ),
           Text(
-            dataObjectList[index]['amount'],
+            dataObjectList[index]['amount'].toString(),
             style: fetchTextStyle,
           )
         ],

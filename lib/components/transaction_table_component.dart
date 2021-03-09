@@ -8,12 +8,13 @@ import 'package:provider/provider.dart';
 class TransactionTableDetailComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+
     List<Map<String, dynamic>> dataObjectList =
-        Provider.of<AppBrain>(context).dataList;
+        Provider.of<AppBrain>(context).dataList.reversed.toList();
     if (dataObjectList != null) {
       return Container(
         child: ListView.builder(
-          reverse: true,
+          // reverse: true,
           itemBuilder: (context, index) {
             return TransactionTableDetailRow(
                 dataObjectList: dataObjectList, index: index);

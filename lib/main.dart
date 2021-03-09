@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hisaber_khata/brain/app_brain.dart';
 import 'package:hisaber_khata/routes/routes.dart';
-import 'package:hisaber_khata/screens/statement_screen.dart';
+import 'package:hisaber_khata/screens/login_screen.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -17,7 +17,7 @@ class CalculaxApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       // theme: appTheme,
-      initialRoute: StatementScreen.id,
+      initialRoute: LoginScreen.id,
       routes: routes,
     );
   }
