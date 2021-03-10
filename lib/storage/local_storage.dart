@@ -44,8 +44,8 @@ class LocalStorage {
   static Future operateExistingDatabase(String databaseName1) async {
     WidgetsFlutterBinding.ensureInitialized();
     String path1 = join(await getDatabasesPath(), databaseName1);
-    var database2 = await openDatabase(path1, version: _databaseVersion);
-    return database2;
+    _database = await openDatabase(path1, version: _databaseVersion);
+    return _database;
   }
 
   static Future<bool> checkDatabaseExists(String databaseName1) async {

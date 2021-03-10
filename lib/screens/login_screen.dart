@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:hisaber_khata/components/existing_account_component.dart';
-import 'package:hisaber_khata/components/new_account_component.dart';
 import 'package:hisaber_khata/screens/statement_screen.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -25,14 +24,25 @@ class LoginScreen extends StatelessWidget {
                     titlePadding: EdgeInsets.all(20.0),
                     titleTextStyle:
                         TextStyle(fontSize: 15.0, color: Colors.black),
-                    content: NewAccountComponent(),
+                    content: ExistingAccountComponent(),
                     actions: [
-                      FlatButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        child: Text('Back'),
-                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          FlatButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            child: Text('BACK'),
+                          ),
+                          FlatButton(
+                            onPressed: () {
+                              Navigator.pushNamed(context, StatementScreen.id);
+                            },
+                            child: Text('OK'),
+                          )
+                        ],
+                      )
                     ],
                   ),
                 );
@@ -54,30 +64,7 @@ class LoginScreen extends StatelessWidget {
               onPressed: () {
                 showDialog(
                   context: context,
-                  builder: (context) => AlertDialog(
-                    title: Text('Enter a Existing Account Number'),
-                    titlePadding: EdgeInsets.all(20.0),
-                    titleTextStyle:
-                        TextStyle(fontSize: 15.0, color: Colors.black),
-                    content: ExistingAccountComponent(),
-                    actions: [
-                      FlatButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        child: Text('BACK'),
-                      ),
-                      SizedBox(
-                        width: 110.0,
-                      ),
-                      FlatButton(
-                        onPressed: () {
-                          Navigator.pushNamed(context, StatementScreen.id);
-                        },
-                        child: Text('OK'),
-                      )
-                    ],
-                  ),
+                  builder: (context) => ExistingAccountComponent(),
                 );
               },
               child: Container(

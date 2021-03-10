@@ -3,7 +3,7 @@ import 'package:hisaber_khata/brain/app_brain.dart';
 import 'package:hisaber_khata/screens/statement_screen.dart';
 import 'package:hisaber_khata/storage/local_storage.dart';
 import 'package:hisaber_khata/utilities/database_utility.dart';
-import 'package:hisaber_khata/widgets/loginscreen_alert_dialog.dart';
+import 'package:hisaber_khata/widgets/login_screen_alert_dialog.dart';
 import 'package:provider/provider.dart';
 
 class NewAccountComponent extends StatelessWidget {

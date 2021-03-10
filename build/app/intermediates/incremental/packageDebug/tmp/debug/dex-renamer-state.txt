@@ -1,4 +1,4 @@
-#Tue Mar 09 06:06:57 IST 2021
+#Tue Mar 09 06:57:42 IST 2021
 base.0=/Users/sushovan/StudioProjects/hisaber_khata/build/app/intermediates/dex/debug/mergeDexDebug/classes.dex
 renamed.0=classes.dex
 path.0=classes.dex
